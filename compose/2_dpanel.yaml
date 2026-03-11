@@ -1,0 +1,14 @@
+name: dpanel
+
+services:
+  dpanel:
+    image: dpanel/dpanel:lite
+    container_name: dpanel
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/dpanel:/dpanel
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    ports:
+      - "8807:8080"

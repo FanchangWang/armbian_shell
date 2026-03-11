@@ -1,0 +1,16 @@
+name: nginx-ui
+
+services:
+  nginx-ui:
+    image: uozi/nginx-ui:latest
+    container_name: nginx-ui
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/nginx-ui/nginx:/etc/nginx
+      - /opt/nginx-ui/nginx-ui:/etc/nginx-ui
+      - /opt/nginx-ui/www:/var/www
+    restart: unless-stopped
+    ports:
+      - "2094:80"
+      - "2095:443"

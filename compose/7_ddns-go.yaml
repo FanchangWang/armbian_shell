@@ -1,0 +1,12 @@
+name: ddns-go
+
+services:
+  ddns-go:
+    image: jeessy/ddns-go:latest
+    container_name: ddns-go
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/ddns-go:/root
+    restart: unless-stopped
+    network_mode: host

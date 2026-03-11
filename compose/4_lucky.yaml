@@ -1,0 +1,12 @@
+name: lucky
+
+services:
+  lucky:
+    image: gdy666/lucky:latest
+    container_name: lucky
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/lucky:/goodluck
+    restart: unless-stopped
+    network_mode: host

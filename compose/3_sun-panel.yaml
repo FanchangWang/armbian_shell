@@ -1,0 +1,15 @@
+name: sun-panel
+
+services:
+  sun-panel:
+    image: hslr/sun-panel:1.3.0
+    container_name: sun-panel
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/sun-panel/conf:/app/conf
+      - /opt/sun-panel/uploads:/app/uploads
+      - /opt/sun-panel/database:/app/database
+    restart: unless-stopped
+    ports:
+      - "3002:3002"

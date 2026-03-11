@@ -1,0 +1,11 @@
+name: webssh
+
+services:
+  webssh:
+    image: jrohy/webssh:latest
+    container_name: webssh
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    ports:
+      - "5032:5032"
