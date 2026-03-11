@@ -71,7 +71,7 @@ execute_script() {
         IFS=":" read -r id name path <<<"$script"
         if [[ "$id" == "$choice" ]]; then
             echo "执行脚本: $path"
-            "$path"
+            bash "$path"
             return 0
         fi
     done
