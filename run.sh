@@ -6,6 +6,13 @@ if [[ "$(id -u)" != 0 ]]; then
     exit 1
 fi
 
+# 颜色定义
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
 # 扫描所有脚本
 scan_scripts() {
     local -a scripts=()
@@ -48,10 +55,10 @@ show_menu() {
     for script in "${scripts[@]}"; do
         IFS=":" read -r id name path <<<"$script"
         script_name=$(read_script_info "$path")
-        printf "%3s | %-30s | %-30s\n" "$id" "$name" "$script_name"
+        printf "%3s | ${BLUE}%-30s${NC} | %-30s\n" "$id" "$name" "$script_name"
     done
     echo "----+--------------------------------+------------------------------"
-    printf "%3s | %-30s | %-30s\n" "0" "exit" "退出脚本"
+    printf "%3s | ${BLUE}%-30s${NC} | %-30s\n" "0" "exit" "退出脚本"
     echo -e "\n"
 }
 

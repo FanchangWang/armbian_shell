@@ -9,6 +9,7 @@ script_name="Docker Compose 管理工具"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # 获取所有数字开头的 yaml 配置文件
@@ -92,11 +93,17 @@ function show_menu() {
     for item in "${compose_files[@]}"; do
         IFS=":" read -r id name path <<<"$item"
         local status=${container_status_map["$path"]}
-        printf "%2s  | %-30s | %s\n" "$id" "$name" "$status"
+        # 根据状态设置颜色
+        local status_color=$NC
+        case "$status" in
+            "已启动") status_color=$GREEN ;;
+            "已停止") status_color=$YELLOW ;;
+        esac
+        printf "%2s  | ${BLUE}%-30s${NC} | ${status_color}%s${NC}\n" "$id" "$name" "$status"
     done
 
     echo -e "${YELLOW}--------------------------------+-------${NC}"
-    printf "%2s  | %-30s | %s\n" "0" "exit" "退出脚本"
+    printf "%2s  | ${BLUE}%-30s${NC} | %s\n" "0" "exit" "退出脚本"
     echo -e "\n"
 }
 
