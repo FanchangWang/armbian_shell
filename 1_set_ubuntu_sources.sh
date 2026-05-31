@@ -45,6 +45,26 @@ deb $source_url jammy-updates main restricted universe multiverse
 deb $source_url jammy-backports main restricted universe multiverse
 EOL
 
+    # 同步设置 armbian 源
+    declare -A armbian_sources
+    armbian_sources["1"]="http://apt.armbian.com"
+    armbian_sources["2"]="https://mirrors.aliyun.com/armbian"
+    armbian_sources["3"]="https://mirrors.tuna.tsinghua.edu.cn/armbian"
+
+    declare -A armbian_names
+    armbian_names["1"]="Armbian 原站"
+    armbian_names["2"]="阿里云"
+    armbian_names["3"]="清华大学"
+
+    local armbian_url=${armbian_sources[$mirror_choice]}
+    local armbian_name=${armbian_names[$mirror_choice]}
+
+    echo "同步设置 armbian 源 ($armbian_name)..."
+    mkdir -p /etc/apt/sources.list.d
+    cat <<EOL > /etc/apt/sources.list.d/armbian.list
+deb [signed-by=/usr/share/keyrings/armbian.gpg] $armbian_url jammy main jammy-utils jammy-desktop
+EOL
+
     # 执行 apt-get update
     echo "正在更新软件源..."
     apt-get update

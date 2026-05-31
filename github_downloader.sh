@@ -6,7 +6,6 @@ get_github_proxies() {
         "https://gh-proxy.com/"
         "https://ghfast.top/"
         "https://github.allproxy.dpdns.org/"
-        "https://github.guyuexuan.ip-ddns.com/"
     )
     echo "${github_proxies[@]}"
 }

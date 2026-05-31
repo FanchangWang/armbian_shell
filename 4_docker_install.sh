@@ -7,8 +7,15 @@ script_name="安装 Docker 容器化平台"
 function install_docker() {
     if ! command -v docker &> /dev/null; then
         echo "Docker 未安装，正在安装..."
-        apt update
-        curl -fsSL https://get.docker.com | sh
+        read -r -p "是否执行 apt update? (y/n, 默认 n): " do_update
+        if [[ "$do_update" == "y" || "$do_update" == "Y" ]]; then
+            apt update
+        fi
+        echo "尝试 DaoCloud 镜像安装..."
+        if ! curl -fsSL https://get.daocloud.io/docker | sh; then
+            echo "DaoCloud 镜像失败，尝试官方源..."
+            curl -fsSL https://get.docker.com | sh
+        fi
     else
         echo "Docker 已安装"
     fi
@@ -19,11 +26,11 @@ function install_docker() {
         cat <<EOL > /etc/docker/daemon.json
 {
   "registry-mirrors": [
+    "https://docker.m.daocloud.io",
     "https://docker.1ms.run",
     "https://docker.1panel.live",
     "https://docker.ketches.cn",
-    "https://docker.allproxy.dpdns.org",
-    "https://docker.guyuexuan.ip-ddns.com"
+    "https://docker.allproxy.dpdns.org"
   ]
 }
 EOL
