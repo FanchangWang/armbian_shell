@@ -111,7 +111,7 @@ fetch_from_api() {
         fi
     done
 
-    if [[ -z "$response" || ! $(echo "$response" | grep -q '"sha":') ]]; then
+    if [[ -z "$response" ]] || ! echo "$response" | grep -q '"sha":'; then
         echo "尝试从原始地址获取 API 数据..."
         if ! response=$(curl -s -H "${HEADERS[@]}" "$API_URL"); then
             echo "错误：无法从 GitHub API 获取数据。"
