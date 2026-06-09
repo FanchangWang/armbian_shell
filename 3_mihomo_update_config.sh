@@ -82,7 +82,7 @@ calculate_git_sha() {
 }
 
 fetch_from_api() {
-    local API_URL="https://api.github.com/repos/FanchangWang/clash_config/contents/config.yaml"
+    local API_URL="https://api.github.com/repos/FanchangWang/clash_config/contents/dist/config.yaml"
     local HEADERS=("Accept: application/vnd.github.v3+json")
 
     local github_token

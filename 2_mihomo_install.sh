@@ -117,7 +117,7 @@ function install_mihomo() {
     done
 
     # 下载 config.yaml
-    download_from_github "config.yaml" "https://raw.githubusercontent.com/FanchangWang/clash_config/main/config.yaml"
+    download_from_github "config.yaml" "https://raw.githubusercontent.com/FanchangWang/clash_config/main/dist/config.yaml"
 
     # 创建并启动 mihomo 服务
     local service_file="/etc/systemd/system/mihomo.service"
