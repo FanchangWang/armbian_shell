@@ -2,7 +2,7 @@ name: lucky
 
 services:
   lucky:
-    image: gdy666/lucky:latest
+    image: gdy666/lucky:v2
     container_name: lucky
     environment:
       - TZ=Asia/Shanghai
