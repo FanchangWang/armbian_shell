@@ -7,6 +7,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /opt/lucky:/goodluck
+      - /opt/lucky:/app/conf
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     network_mode: host
