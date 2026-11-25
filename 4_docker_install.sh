@@ -71,8 +71,7 @@ function install_docker() {
     "https://docker.m.daocloud.io",
     "https://docker.1ms.run",
     "https://docker.1panel.live",
-    "https://docker.ketches.cn",
-    "https://docker.allproxy.dpdns.org"
+    "https://docker.ketches.cn"
   ]
 }
 EOL

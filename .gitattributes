@@ -1,2 +1,27 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# 默认：所有文本文件在提交与检出时统一使用 LF 换行
+* text=auto eol=lf
+
+# 显式声明常见文本类型，避免不同平台产生 CRLF
+*.sh          text eol=lf
+*.yaml        text eol=lf
+*.yml         text eol=lf
+*.md          text eol=lf
+*.txt         text eol=lf
+*.json        text eol=lf
+*.conf        text eol=lf
+*.ini         text eol=lf
+*.env         text eol=lf
+.gitattributes text eol=lf
+.gitignore    text eol=lf
+
+# 二进制文件不参与换行符转换
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.gz   binary
+*.tar  binary
+*.exe  binary

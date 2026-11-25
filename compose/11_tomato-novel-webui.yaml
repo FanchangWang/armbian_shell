@@ -1,0 +1,15 @@
+name: tomato-novel-webui
+
+services:
+  tomato-novel-webui:
+    image: zhongbai233/tomato-novel-downloader-webui:latest-musl
+    container_name: tomato-novel-webui
+    environment:
+      - TZ=Asia/Shanghai
+      - TOMATO_WEB_ADDR=0.0.0.0:18423
+    volumes:
+      - /opt/tomato-novel-webui:/data
+    restart: unless-stopped
+    ports:
+      - "18423:18423"
+    command: --server --data-dir /data
