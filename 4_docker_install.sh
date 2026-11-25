@@ -62,22 +62,6 @@ function install_docker() {
     fi
 
     echo "Docker 安装成功"
-    if [[ ! -f "/etc/docker/daemon.json" ]]; then
-        echo "设置 Docker 加速..."
-        mkdir -p /etc/docker
-        cat <<EOL > /etc/docker/daemon.json
-{
-  "registry-mirrors": [
-    "https://docker.m.daocloud.io",
-    "https://docker.1ms.run",
-    "https://docker.1panel.live",
-    "https://docker.ketches.cn"
-  ]
-}
-EOL
-        systemctl restart docker
-        echo "Docker 加速设置完成"
-    fi
 }
 
 install_docker
