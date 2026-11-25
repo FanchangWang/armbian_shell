@@ -127,12 +127,34 @@ PY
 }
 
 function restart_docker() {
-    if command -v systemctl >/dev/null 2>&1 && systemctl restart docker; then
-        echo -e "${GREEN}Docker 已重启${NC}"
-    elif command -v service >/dev/null 2>&1 && service docker restart; then
+    local status
+
+    if ! command -v systemctl >/dev/null 2>&1 && ! command -v service >/dev/null 2>&1; then
+        echo -e "${YELLOW}未找到 systemctl / service，请手动重启 Docker 以使配置生效${NC}"
+        return 0
+    fi
+
+    echo -e "${YELLOW}正在重启 Docker 服务，可能需要几十秒，请稍候...${NC}"
+    # 后台打印进度点，避免用户以为脚本卡住
+    ( while true; do printf "."; sleep 2; done ) &
+    local spinner_pid=$!
+
+    if command -v systemctl >/dev/null 2>&1; then
+        systemctl restart docker
+        status=$?
+    else
+        service docker restart
+        status=$?
+    fi
+
+    kill "$spinner_pid" 2>/dev/null
+    wait "$spinner_pid" 2>/dev/null
+    printf "\n"
+
+    if [[ $status -eq 0 ]]; then
         echo -e "${GREEN}Docker 已重启${NC}"
     else
-        echo -e "${YELLOW}警告：Docker 重启失败，请手动执行 systemctl restart docker${NC}"
+        echo -e "${RED}警告：Docker 重启失败（退出码 $status），请手动执行 systemctl restart docker${NC}"
     fi
 }
 
