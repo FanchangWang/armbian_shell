@@ -16,7 +16,6 @@ MIRRORS=(
     "https://docker.m.daocloud.io"
     "https://docker.1ms.run"
     "https://docker.1panel.live"
-    "https://docker.ketches.cn"
     "https://gh-proxy.org/docker/"
     "https://v4.gh-proxy.org/docker/"
     "https://v6.gh-proxy.org/docker/"
